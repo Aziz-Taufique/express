@@ -1,0 +1,11 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/place\",\"status\":\"201\",\"responseTime\":\"4.137\"}","timestamp":"2024-12-01T14:22:19.828Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/place\",\"status\":\"201\",\"responseTime\":\"1.028\"}","timestamp":"2024-12-01T14:22:43.506Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"A post request happen to add country","timestamp":"2024-12-01T14:26:06.293Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/place\",\"status\":\"201\",\"responseTime\":\"8.926\"}","timestamp":"2024-12-01T14:26:06.305Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"A post request happen to add country","timestamp":"2024-12-01T14:28:30.714Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/place\",\"status\":\"201\",\"responseTime\":\"8.921\"}","timestamp":"2024-12-01T14:28:30.726Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/place\",\"status\":\"500\",\"responseTime\":\"2.757\"}","timestamp":"2024-12-01T14:28:40.122Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"A post request happen to add country","timestamp":"2024-12-01T14:29:04.492Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/place\",\"status\":\"201\",\"responseTime\":\"9.838\"}","timestamp":"2024-12-01T14:29:04.504Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"this is get method","timestamp":"2024-12-01T14:29:10.672Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/place\",\"status\":\"200\",\"responseTime\":\"1.861\"}","timestamp":"2024-12-01T14:29:10.677Z"}

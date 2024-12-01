@@ -113,3 +113,272 @@ Use Case	       Extract a portion of an array	        Add, remove, or replace el
 When to Use:
 Use slice when you need a copy or subset of an array without altering the original array.
 Use splice when you need to modify the original array by adding, removing, or replacing elements.
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+                            MORGAN AND WISTON
+
+1. Morgan
+Morgan is a middleware specifically designed for logging HTTP requests in a Node.js application. It's often used in conjunction with Express.js to log details about incoming requests.                            
+
+const express = require('express');
+const morgan = require('morgan');
+
+const app = express();
+
+// Use Morgan middleware to log HTTP requests
+app.use(morgan('dev')); // 'dev' is a predefined format
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+
+
+Morgan Formats
+dev: Concise colored output (status, method, response time, etc.).
+combined: Standard Apache combined log format.
+common: Standard Apache common log format.
+short: Shortened version of the log.
+tiny: Minimalistic logging.
+
+
+2. Winston
+Winston is a general-purpose logging library used for logging application-level information. It supports multiple transports (e.g., console, file, HTTP, etc.) and can be customized for different log levels.
+
+const winston = require('winston');
+
+// Create a Winston logger
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console(), // Log to console
+    new winston.transports.File({ filename: 'app.log' }) // Log to a file
+  ],
+});
+
+// Example log messages
+logger.info('This is an info message');
+logger.error('This is an error message');
+
+
+Combining Morgan and Winston
+Morgan can be integrated with Winston to log HTTP requests in the same logging system.
+
+const express = require('express');
+const morgan = require('morgan');
+const winston = require('winston');
+
+const app = express();
+
+// Create Winston logger
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'app.log' }),
+  ],
+});
+
+// Stream logs from Morgan to Winston
+app.use(
+  morgan('combined', {
+    stream: {
+      write: (message) => logger.info(message.trim()),
+    },
+  })
+);
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(3000, () => {
+  logger.info('Server is running on port 3000');
+});
+
+
+Morgan and Winston are two popular logging libraries in Node.js. While they are distinct libraries, they are often used together in Node.js applications for effective logging of requests and system information.
+
+1. Morgan
+Morgan is a middleware specifically designed for logging HTTP requests in a Node.js application. It's often used in conjunction with Express.js to log details about incoming requests.
+
+Installation
+bash
+Copy code
+npm install morgan
+Usage
+javascript
+Copy code
+const express = require('express');
+const morgan = require('morgan');
+
+const app = express();
+
+// Use Morgan middleware to log HTTP requests
+app.use(morgan('dev')); // 'dev' is a predefined format
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+Morgan Formats
+dev: Concise colored output (status, method, response time, etc.).
+combined: Standard Apache combined log format.
+common: Standard Apache common log format.
+short: Shortened version of the log.
+tiny: Minimalistic logging.
+2. Winston
+Winston is a general-purpose logging library used for logging application-level information. It supports multiple transports (e.g., console, file, HTTP, etc.) and can be customized for different log levels.
+
+Installation
+bash
+Copy code
+npm install winston
+Usage
+javascript
+Copy code
+const winston = require('winston');
+
+// Create a Winston logger
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console(), // Log to console
+    new winston.transports.File({ filename: 'app.log' }) // Log to a file
+  ],
+});
+
+// Example log messages
+logger.info('This is an info message');
+logger.error('This is an error message');
+Combining Morgan and Winston
+Morgan can be integrated with Winston to log HTTP requests in the same logging system.
+
+javascript
+Copy code
+const express = require('express');
+const morgan = require('morgan');
+const winston = require('winston');
+
+const app = express();
+
+// Create Winston logger
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'app.log' }),
+  ],
+});
+
+// Stream logs from Morgan to Winston
+app.use(
+  morgan('combined', {
+    stream: {
+      write: (message) => logger.info(message.trim()),
+    },
+  })
+);
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(3000, () => {
+  logger.info('Server is running on port 3000');
+});
+
+When to Use Them
+Morgan: For logging HTTP request details in your Express.js application.
+Winston: For logging other application events, errors, and custom messages.
+Using them together ensures comprehensive and organized logging for your Node.js application.
+
+////////////////////////////////////////////////////////////////////////
+
+   split
+
+In JavaScript, the split() method is used to divide a string into an array of substrings based on a specified separator. It is a method available on string objects.
+string.split(separator, limit)
+
+separator (optional): Specifies the pattern (string or regular expression) used to determine where to split the string.
+If omitted, the entire string is returned as a single-element array.
+If the separator is an empty string (""), the string is split into individual characters.
+
+limit (optional): Specifies the maximum number of splits. The resulting array will have at most limit elements.
+
+
+Examples
+const str = "apple,banana,cherry";
+const result = str.split(","); // Split by commas
+console.log(result); 
+// Output: ["apple", "banana", "cherry"]
+
+
+Using Limit
+const str = "apple,banana,cherry";
+const result = str.split(",", 2); // Split by commas, limit to 2 parts
+console.log(result);
+// Output: ["apple", "banana"]
+
+Splitting by Space
+const str = "Hello World! How are you?";
+const result = str.split(" "); // Split by spaces
+console.log(result);
+// Output: ["Hello", "World!", "How", "are", "you?"]
+
+Splitting into Characters
+const str = "hello";
+const result = str.split(""); // Split into characters
+console.log(result);
+// Output: ["h", "e", "l", "l", "o"]
+
+Using Regular Expressions
+const str = "one, two; three.four";
+const result = str.split(/[,;. ]+/); // Split by commas, semicolons, periods, or spaces
+console.log(result);
+// Output: ["one", "two", "three", "four"]
+
+
+No Separator
+If the separator is omitted, the method returns the entire string as a single-element array:
+
+const str = "hello";
+const result = str.split();
+console.log(result);
+// Output: ["hello"]
+
+Edge Cases
+
+Empty String as Input
+const str = "";
+const result = str.split(",");
+console.log(result);
+// Output: [""]
+
+Separator Not Found
+const str = "apple banana cherry";
+const result = str.split(",");
+console.log(result);
+// Output: ["apple banana cherry"]
+
+Empty String as Separator
+const str = "hello";
+const result = str.split("");
+console.log(result);
+// Output: ["h", "e", "l", "l", "o"]
+
+Common Use Cases
+Tokenizing strings (e.g., splitting a sentence into words).
+Parsing CSV or other delimited data.
+Breaking strings for character-by-character processing.
