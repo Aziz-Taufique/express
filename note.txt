@@ -1,0 +1,115 @@
+                  parseInt
+parseInt("42");         // Returns 42
+parseInt("101", 2);     // Returns 5 (binary to decimal)
+parseInt("0x1F", 16);   // Returns 31 (hexadecimal to decimal)
+parseInt("7.5");        // Returns 7 (parses only the integer part)
+parseInt("abc");        // Returns NaN (not a number)
+parseInt("  15");       // Returns 15 (leading spaces are ignored)
+
+
+parseInt("08");         // Returns 8 (in modern browsers, as radix defaults to 10)
+parseInt("08", 8);      // Returns NaN (invalid octal in radix 8)
+
+
+                find and findIndex 
+
+1. find
+Purpose: Returns the first element in an array that satisfies the provided testing function.
+Return Value: The element itself (or undefined if no match is found).
+Usage Example:
+const numbers = [10, 20, 30, 40];
+const result = numbers.find(num => num > 25);
+console.log(result); // Output: 30
+
+2. findIndex
+Purpose: Returns the index of the first element in an array that satisfies the provided testing function.
+Return Value: The index (or -1 if no match is found).
+Usage Example:
+const numbers = [10, 20, 30, 40];
+const index = numbers.findIndex(num => num > 25);
+console.log(index); // Output: 2
+
+Key Differences:
+ Feature	              find	                                              findIndex
+Return Type	       The element found	                              The index of the element
+No Match	       Returns undefined	                              Returns -1
+Use Case	       When you need the element itself	              When you need the index of the element
+
+
+Example Combining Both:
+If you need both the element and its index, you can combine them:
+
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.find(num => num > 25);
+const index = numbers.findIndex(num => num > 25);
+
+console.log(`Element: ${result}, Index: ${index}`);
+// Output: Element: 30, Index: 2
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+                       slice and splice
+
+
+In JavaScript, slice and splice are both used to work with arrays, but they serve different purposes and behave differently.
+
+1. slice
+Purpose: Extracts a portion of an array without modifying the original array.
+Return Value: A new array containing the extracted elements.
+Syntax:  array.slice(startIndex, endIndex);
+startIndex: The index where the extraction starts (inclusive).
+endIndex: The index where the extraction ends (exclusive). If omitted, it extracts until the end of the array.
+Example:
+
+const arr = [1, 2, 3, 4, 5];
+
+// Extract elements from index 1 to 3 (3 is exclusive)
+const slicedArr = arr.slice(1, 3);
+
+console.log(slicedArr); // Output: [2, 3]
+console.log(arr);       // Original array is unchanged: [1, 2, 3, 4, 5]
+
+
+
+2. splice
+Purpose: Changes an array by adding, removing, or replacing elements.
+Return Value: An array containing the removed elements.
+Syntax:
+array.splice(startIndex, deleteCount, ...itemsToAdd);
+startIndex: The index where changes will begin.
+deleteCount: The number of elements to remove. If 0, no elements are removed.
+...itemsToAdd: Optional elements to add at the specified index.
+Example (Removing Elements):
+const arr = [1, 2, 3, 4, 5];
+
+// Remove 2 elements starting from index 1
+const removed = arr.splice(1, 2);
+
+console.log(removed); // Output: [2, 3]
+console.log(arr);     // Modified array: [1, 4, 5]
+Example (Adding Elements):
+const arr = [1, 4, 5];
+
+// Add elements at index 1
+arr.splice(1, 0, 2, 3);
+
+console.log(arr); // Output: [1, 2, 3, 4, 5]
+Example (Replacing Elements):
+const arr = [1, 2, 3, 4, 5];
+
+// Replace 2 elements starting from index 1
+arr.splice(1, 2, 9, 8);
+
+console.log(arr); // Output: [1, 9, 8, 4, 5]
+
+Key Differences:
+  Feature	               slice	                                      splice
+Modifies Array	   No (original array is unchanged)	        Yes (original array is modified)
+Return Value	   A new array with extracted elements	    An array of removed elements
+Use Case	       Extract a portion of an array	        Add, remove, or replace elements
+
+When to Use:
+Use slice when you need a copy or subset of an array without altering the original array.
+Use splice when you need to modify the original array by adding, removing, or replacing elements.
